@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Aashrith AI</title>
+<title>Aashrith AI Companion</title>
+
 <link rel="stylesheet" href="style.css">
 
 <script src="https://cdn.jsdelivr.net/npm/three@0.150.1/build/three.min.js"></script>
@@ -12,14 +13,16 @@
 
 <canvas id="bg"></canvas>
 
-<div class="chat-container">
+<div class="ui">
 
-<h1>✨ Aashrith AI Companion</h1>
+<h1>🤖 Aashrith AI</h1>
+
+<div id="clock"></div>
 
 <div id="chatbox"></div>
 
 <div class="input-area">
-<input id="userInput" placeholder="Talk with AI...">
+<input id="userInput" placeholder="Talk to AI...">
 <button onclick="sendMessage()">Send</button>
 <button onclick="startVoice()">🎤</button>
 </div>
