@@ -3,49 +3,84 @@ let chatbox=document.getElementById("chatbox");
 function sendMessage(){
 
 let input=document.getElementById("userInput");
-let message=input.value;
 
-chatbox.innerHTML+=`<p><b>You:</b> ${message}</p>`;
+let msg=input.value;
 
-let reply=generateReply(message);
+chatbox.innerHTML+=`<p>🧑 ${msg}</p>`;
+
+let reply=aiReply(msg);
 
 setTimeout(()=>{
-chatbox.innerHTML+=`<p><b>AI:</b> ${reply}</p>`;
+
+chatbox.innerHTML+=`<p>🤖 ${reply}</p>`;
+
+speak(reply);
+
 chatbox.scrollTop=chatbox.scrollHeight;
-},800);
+
+},700);
 
 input.value="";
 }
 
-function generateReply(msg){
+function aiReply(msg){
 
 let name=localStorage.getItem("name");
 
 if(msg.toLowerCase().includes("my name")){
-localStorage.setItem("name",msg.split(" ").pop());
-return "Nice to meet you "+msg.split(" ").pop()+" 💖";
+
+let n=msg.split(" ").pop();
+
+localStorage.setItem("name",n);
+
+return "Nice to meet you "+n+" 💖";
+
 }
 
 if(name){
-return "Hey "+name+" 😊 I enjoy talking with you.";
+
+return "Hello "+name+" ✨ I enjoy talking with you.";
+
 }
 
 return "I am your AI companion created by Aashrith.";
 }
 
+function speak(text){
+
+let speech=new SpeechSynthesisUtterance(text);
+
+speechSynthesis.speak(speech);
+
+}
+
 function startVoice(){
 
-let recognition=new webkitSpeechRecognition();
+let rec=new webkitSpeechRecognition();
 
-recognition.onresult=function(event){
-document.getElementById("userInput").value=
-event.results[0][0].transcript;
+rec.onresult=function(e){
+
+document.getElementById("userInput").value=e.results[0][0].transcript;
 
 sendMessage();
+
 }
 
-recognition.start();
+rec.start();
+
 }
+
+function updateClock(){
+
+let d=new Date();
+
+document.getElementById("clock").innerText=d.toLocaleTimeString();
+
+}
+
+setInterval(updateClock,1000);
+
+
 
 const scene=new THREE.Scene();
 
@@ -64,14 +99,14 @@ renderer.setSize(window.innerWidth,window.innerHeight);
 
 camera.position.z=30;
 
-const geometry=new THREE.SphereGeometry(5,32,32);
+const geo=new THREE.SphereGeometry(5,32,32);
 
-const material=new THREE.MeshBasicMaterial({
+const mat=new THREE.MeshBasicMaterial({
 wireframe:true,
 color:0x00ffff
 });
 
-const planet=new THREE.Mesh(geometry,material);
+const planet=new THREE.Mesh(geo,mat);
 
 scene.add(planet);
 
