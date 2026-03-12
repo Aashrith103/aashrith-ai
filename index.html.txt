@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Aashrith AI</title>
+<link rel="stylesheet" href="style.css">
+
+<script src="https://cdn.jsdelivr.net/npm/three@0.150.1/build/three.min.js"></script>
+
+</head>
+
+<body>
+
+<canvas id="bg"></canvas>
+
+<div class="chat-container">
+
+<h1>✨ Aashrith AI Companion</h1>
+
+<div id="chatbox"></div>
+
+<div class="input-area">
+<input id="userInput" placeholder="Talk with AI...">
+<button onclick="sendMessage()">Send</button>
+<button onclick="startVoice()">🎤</button>
+</div>
+
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
